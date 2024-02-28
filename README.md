@@ -1,4 +1,4 @@
-# VUAMS Converter
+# VU-AMS Converter
 
 This brief Python script provides tools for reading, extracting, and processing data from `amsdatai`, recorded using VU-AMS device (https://vu-ams.nl/). `amsdatai` are processed using the VU-DAMS software (https://vu-ams.nl/downloads/). 
 
@@ -32,21 +32,19 @@ No additional installation is required beyond a standard Python environment.
 To use the script, simply import the functions into your Python script and call them with the appropriate parameters. Ensure your data files are accessible by the script.
 
 ```python
-from vuams import read_and_extract_zip, read_zip_and_extract_data, ibi_and_timestamp_converter
+import vuams
 
 # Example call
-file_path = 'path/to/your/zipfile.zip'
-target_file = 'data.json'
-read_and_extract_zip(file_path)
-data = read_zip_and_extract_data(file_path, target_file)
+file_path = 'path/to/your/amsdatai'
+
+beats_data = vuams.read_zip_and_extract_data(file_path, 'beats.json')
+starts_data = vuams.read_zip_and_extract_data(file_path, 'starts.json')
+
+data = vuams.ibi_and_timestamp_converter (beats_data, starts_data)
 ```
+
+
 
 ## Contributing
 
 Feel free to fork this repository and submit pull requests to enhance the functionalities.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE.md).
-
-```
